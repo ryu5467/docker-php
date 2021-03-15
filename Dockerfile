@@ -1,4 +1,4 @@
-FROM php:7.4-fpm
+FROM php:8.0-fpm
 
 # 拷贝需要用到的资源
 COPY resource /home/resource
