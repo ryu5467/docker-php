@@ -1,0 +1,3 @@
+FROM ubuntu
+COPY run_tests.sh /home/run_tests.sh
+CMD ["/bin/bash", "/home/run_tests.sh"]
