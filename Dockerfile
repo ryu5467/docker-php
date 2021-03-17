@@ -1,4 +1,4 @@
-FROM php:8.0-fpm
+FROM php:8.0-cli
 
 # 拷贝需要用到的资源
 COPY resource /home/resource
@@ -48,8 +48,8 @@ RUN pecl install /home/resource/zip-1.19.2.tgz && \
     echo "extension=zip.so" > /usr/local/etc/php/conf.d/zip.ini
 
 # XDebug
-# RUN pecl install /home/resource/xdebug-3.0.3.tgz && \ 
-#     echo "zend_extension=xdebug.so\nxdebug.mode=coverage" > /usr/local/etc/php/conf.d/xdebug.ini
+RUN pecl install /home/resource/xdebug-3.0.3.tgz && \ 
+    echo "zend_extension=xdebug.so\nxdebug.mode=coverage" > /usr/local/etc/php/conf.d/xdebug.ini
 
 
 # Redis
@@ -69,4 +69,4 @@ RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/compos
 ENV LC_ALL C.UTF-8
 
 
-ENTRYPOINT ["/bin/bash", "/home/start.sh"]
+ENTRYPOINT ["/bin/bash"]
