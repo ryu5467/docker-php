@@ -44,26 +44,23 @@ RUN docker-php-ext-configure gd \
 RUN docker-php-ext-install gd pdo_mysql mysqli pgsql pdo_pgsql pcntl bcmath
 
 # Zip
-RUN pecl install /home/resource/zip-1.18.2.tgz && \ 
+RUN pecl install /home/resource/zip-1.19.2.tgz && \ 
     echo "extension=zip.so" > /usr/local/etc/php/conf.d/zip.ini
 
 # XDebug
-RUN pecl install /home/resource/xdebug-2.9.4.tgz
+# RUN pecl install /home/resource/xdebug-3.0.3.tgz && \ 
+#     echo "zend_extension=xdebug.so\nxdebug.mode=coverage" > /usr/local/etc/php/conf.d/xdebug.ini
 
 
 # Redis
-RUN pecl install /home/resource/redis-5.2.1.tgz && \ 
+RUN pecl install /home/resource/redis-5.3.3.tgz && \ 
     echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
 
 
 # Mcrypt
 RUN apt-get install -y libmcrypt-dev libmhash-dev && \
-    pecl install /home/resource/mcrypt-1.0.3.tgz && \
+    pecl install /home/resource/mcrypt-1.0.4.tgz && \
     echo "extension=mcrypt.so" > /usr/local/etc/php/conf.d/mcrypt.ini
-
-# Fann
-RUN pecl install /home/resource/fann-1.1.1.tgz && \ 
-    echo "extension=fann.so" > /usr/local/etc/php/conf.d/fann.ini
 
 # composer 阿里镜像
 RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
